@@ -28,6 +28,9 @@ Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logo
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
 })->middleware('guest')->name('password.request');
+Route::get('/find-work', function () {
+    return view('work-list');
+});
 
 
 Route::get('/home', function () {
