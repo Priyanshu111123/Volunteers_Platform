@@ -3,6 +3,13 @@
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WorkController;
+
+Route::get('/work/create', [WorkController::class, 'create'])->name('work.create');
+Route::post('/work/store', [WorkController::class, 'store'])->name('work.store');
+
+// Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 Route::get('/', function () {
     return view('home');
@@ -32,9 +39,14 @@ Route::get('/find-work', function () {
     return view('work-list');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard/client', [DashboardController::class, 'client'])->name('dashboard.client');
+});
 
+Route::get('/dashboard/client', [DashboardController::class, 'client'])->name('dashboard.client');
 Route::get('/home', function () {
     $user = Auth::user();
     return view('dashboard', compact('user'));
 })->middleware(['auth']);
 
+Route::get('/work', [WorkController::class, 'index'])->name('work.index');

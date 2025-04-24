@@ -37,6 +37,9 @@
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">VolunteerHub</a>
             <div class="ms-auto">
+                <div class="ms-auto">
+                    <a href="{{ route('work.index') }}" class="btn btn-outline-success me-2">Find Work</a>
+
                 <a href="#" class="btn btn-outline-primary me-2">Login</a>
                 <a href="http://127.0.0.1:8001/signup" class="btn btn-primary">Join Now</a>
             </div>
@@ -45,9 +48,10 @@
 
     <section class="hero">
         <div class="container">
+<a href="{{ route('work.index') }}" class="btn btn-outline-light btn-lg mt-3 ms-2">Find Work</a>
+
             <h1 class="display-4">Make a Difference Today</h1>
             <p class="lead mt-3">Join our community of volunteers helping people and places in need.</p>
-            <a href="#" class="btn btn-lg btn-custom mt-4">Get Started</a>
         </div>
     </section>
 

@@ -26,18 +26,26 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-
+    
         // Attempt login
         if (Auth::attempt($credentials, $request->remember)) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+    
+            $user = Auth::user();
+    
+            if ($user->role === 'client') {
+                return redirect()->intended('/dashboard/client');
+            } else {
+                return redirect()->intended('/home');
+            }
         }
-
+    
         // Authentication failed
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
+    
 
     /**
      * Logout the user.
